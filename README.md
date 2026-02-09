@@ -19,3 +19,4 @@ FastAPI/Nginx 애플리케이션을 Docker로 빌드해 AWS ECR에 푸시하고,
 - CI가 `k8s/*.yaml`을 자동 커밋/푸시하므로 원격이 앞서는 경우가 발생합니다.
 - push 전에 `git pull --rebase`를 권장합니다.
 - `git pull --no-rebase`는 머지 커밋을 만들 수 있어 권장하지 않습니다.
+- AWS 리전은 `ap-southeast-2` 기준으로 작성되어 있습니다.
