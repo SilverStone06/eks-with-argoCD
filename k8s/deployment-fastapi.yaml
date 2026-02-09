@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
         - name: fastapi
-          image: 036333380579.dkr.ecr.ap-southeast-2.amazonaws.com/song/argocd:fastapi-78490b7a3d7b9388b76d30e3de0067c975584686
+          image: 036333380579.dkr.ecr.ap-southeast-2.amazonaws.com/song/argocd:fastapi-00e670f9c5a3c092689a2e5f5045aeecd9bee848
           ports:
             - containerPort: 8000
           resources:
