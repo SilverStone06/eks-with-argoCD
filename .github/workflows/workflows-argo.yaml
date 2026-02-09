@@ -22,10 +22,20 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
+      - name: Build & Push FastAPI
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          docker build -t $ECR_REGISTRY/song/argocd:fastapi-$IMAGE_TAG ./fastapi
+          docker push $ECR_REGISTRY/song/argocd:fastapi-$IMAGE_TAG
+
       - name: Build & Push Nginx
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $ECR_REGISTRY/song/argocd:nginx-$IMAGE_TAG ./nginx
+          docker tag $ECR_REGISTRY/song/argocd:nginx-$IMAGE_TAG $ECR_REGISTRY/song/argocd:nginx-latest
+          docker push $ECR_REGISTRY/song/argocd:nginx-latest
           docker push $ECR_REGISTRY/song/argocd:nginx-$IMAGE_TAG
