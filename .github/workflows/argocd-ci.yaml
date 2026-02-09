@@ -38,8 +38,8 @@ jobs:
           docker build -t $ECR_REGISTRY/song/argocd:nginx-$IMAGE_TAG ./nginx
           docker push $ECR_REGISTRY/song/argocd:nginx-$IMAGE_TAG
 
-          # docker tag $ECR_REGISTRY/song/argocd:nginx-$IMAGE_TAG $ECR_REGISTRY/song/argocd:nginx-latest
-          # docker push $ECR_REGISTRY/song/argocd:nginx-latest
+          docker tag $ECR_REGISTRY/song/argocd:nginx-$IMAGE_TAG $ECR_REGISTRY/song/argocd:nginx-latest
+          docker push $ECR_REGISTRY/song/argocd:nginx-latest
 
       - name: Build & Push FastAPI
         env:
@@ -50,8 +50,8 @@ jobs:
           docker push $ECR_REGISTRY/song/argocd:fastapi-$IMAGE_TAG
 
           # latest 태그도 같이 푸시 (ArgoCD 연결 전 테스트용)
-          # docker tag $ECR_REGISTRY/song/argocd:fastapi-$IMAGE_TAG $ECR_REGISTRY/song/argocd:fastapi-latest
-          # docker push $ECR_REGISTRY/song/argocd:fastapi-latest
+          docker tag $ECR_REGISTRY/song/argocd:fastapi-$IMAGE_TAG $ECR_REGISTRY/song/argocd:fastapi-latest
+          docker push $ECR_REGISTRY/song/argocd:fastapi-latest
 
       # ==========================================================
       # 핵심 추가 단계: k8s 폴더의 YAML 파일을 수정하여 ArgoCD에게 배포를 지시합니다.
