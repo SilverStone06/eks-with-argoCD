@@ -57,7 +57,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: 036333380579.dkr.ecr.ap-southeast-2.amazonaws.com/song/argocd:nginx-f628b7fc40dd4dc7e7bd54fc60ea03a221e8d8ba
+          image: 036333380579.dkr.ecr.ap-southeast-2.amazonaws.com/song/argocd:nginx-5efc3fdcd27cb075426a8ae47ed0fbb66e1f0de7
           ports:
             - containerPort: 80
           resources:
