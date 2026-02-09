@@ -1,0 +1,43 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  name: web-fastapi-svc
+  namespace: web-project
+spec:
+  type: ClusterIP
+  selector:
+    app: fastapi
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8000
+      targetPort: 8000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-deployment
+  namespace: web-project
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fastapi
+  template:
+    metadata:
+      labels:
+        app: fastapi
+    spec:
+      containers:
+        - name: fastapi
+          image: 036333380579.dkr.ecr.ap-southeast-2.amazonaws.com/song/argocd:fastapi-78490b7a3d7b9388b76d30e3de0067c975584686
+          ports:
+            - containerPort: 8000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+
